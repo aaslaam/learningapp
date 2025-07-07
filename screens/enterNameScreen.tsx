@@ -8,12 +8,22 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import type { StackNavigationProp } from '@react-navigation/stack';
+type RootStackParamList = {
+  HomeScreen: undefined;
+};
+
 
 const EnterNameScreen = () => {
   const [name, setName] = useState('');
+  const navigation =
+    useNavigation<StackNavigationProp<RootStackParamList, 'HomeScreen'>>();
 
   const handleContinue = () => {
     console.log('Name submitted:', name);
+    navigation.navigate('HomeScreen');
+      
   };
 
   return (

@@ -4,7 +4,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from './screens/login';
 import OTPVerificationScreen from './screens/otpScreen';
 import PasswordScreen from './screens/passwordScreen';
-import EnterNameScreen from './screens/enterNameScreen';     // Import PasswordScreen
+import EnterNameScreen from './screens/enterNameScreen'; 
+import HomeScreen from './screens/HomeScreen';    // Import PasswordScreen
 
 const Stack = createStackNavigator();
 
@@ -17,8 +18,9 @@ const App = () => {
           name="OTPVerification"
           component={OTPVerificationScreen}
         />
-        <Stack.Screen name="PasswordScreen" component={PasswordScreen} /> 
+        <Stack.Screen name="PasswordScreen" component={PasswordScreen} />
         <Stack.Screen name="EnterNameScreen" component={EnterNameScreen} />
+        <Stack.Screen name="HomeScreen" component={HomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
