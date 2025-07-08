@@ -13,10 +13,12 @@ import Class from '../assets/class-light.svg';
 import Profile from '../assets/profile.svg';
 import { useNavigation } from '@react-navigation/native';
 import type { StackNavigationProp } from '@react-navigation/stack';
+
 type RootStackParamList = {
   HomeScreen: undefined;
+  VideoPlayer: undefined;
+  ProfileScreen: undefined;
 };
-
 
 const lectures = [
   {
@@ -66,11 +68,9 @@ const lectures = [
 const LectureScreen = () => {
   const navigation =
     useNavigation<StackNavigationProp<RootStackParamList, 'HomeScreen'>>();
-    
+
   return (
     <View style={{ flex: 1, backgroundColor: '#F8F8FB' }}>
-
-
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <Text style={styles.pageTitle}>Today’s lectures</Text>
         <View style={styles.tabsWrapper}>
@@ -80,7 +80,11 @@ const LectureScreen = () => {
         </View>
 
         {lectures.map((item, index) => (
-          <View key={index} style={styles.lectureCard}>
+          <TouchableOpacity
+            key={index}
+            style={styles.lectureCard}
+            onPress={() => navigation.navigate('VideoPlayer')}
+          >
             <Image source={item.icon} style={styles.lectureIcon} />
             <View style={styles.lectureContent}>
               <Text style={styles.lectureTitle}>{item.title}</Text>
@@ -105,19 +109,28 @@ const LectureScreen = () => {
                 ]}
               />
             </View>
-          </View>
+          </TouchableOpacity>
         ))}
       </ScrollView>
 
       <View style={styles.bottomNav}>
-        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('HomeScreen')}>
+        <TouchableOpacity
+          style={styles.navItem}
+          onPress={() => navigation.navigate('HomeScreen')}
+        >
           <Home width={24} height={24} />
         </TouchableOpacity>
         <TouchableOpacity style={styles.navItem}>
           <Class width={24} height={24} />
         </TouchableOpacity>
         <TouchableOpacity style={styles.navItem}>
-          <Profile width={24} height={24} />
+          <Profile
+            width={24}
+            height={24}
+            onPress={() => {
+              navigation.navigate('ProfileScreen');
+            }}
+          />
         </TouchableOpacity>
       </View>
     </View>

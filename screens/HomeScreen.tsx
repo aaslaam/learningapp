@@ -7,7 +7,6 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
-  StatusBar,
 } from 'react-native';
 import Notification from '../assets/notification.svg';
 import Home from '../assets/Home g.svg';
@@ -17,6 +16,7 @@ import { useNavigation } from '@react-navigation/native';
 import type { StackNavigationProp } from '@react-navigation/stack';
 type RootStackParamList = {
   LectureScreen: undefined;
+  ProfileScreen:undefined
 };
 const courses = [
   {
@@ -51,9 +51,6 @@ const Dashboard = () => {
           useNavigation<StackNavigationProp<RootStackParamList, 'LectureScreen'>>();
   return (
     <View style={{ flex: 1 }}>
-      {/* ✅ Hiding the status bar */}
-      <StatusBar hidden />
-
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <View style={styles.header}>
           <Image
@@ -123,12 +120,22 @@ const Dashboard = () => {
           <Home width={24} height={24} />
         </TouchableOpacity>
         <TouchableOpacity style={styles.navItem}>
-          <Class width={24} height={24} onPress={()=>{
-            navigation.navigate('LectureScreen');
-          }} />
+          <Class
+            width={24}
+            height={24}
+            onPress={() => {
+              navigation.navigate('LectureScreen');
+            }}
+          />
         </TouchableOpacity>
         <TouchableOpacity style={styles.navItem}>
-          <Profile width={24} height={24} />
+          <Profile
+            width={24}
+            height={24}
+            onPress={() => {
+              navigation.navigate('ProfileScreen');
+            }}
+          />
         </TouchableOpacity>
       </View>
     </View>
