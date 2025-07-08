@@ -13,7 +13,11 @@ import Notification from '../assets/notification.svg';
 import Home from '../assets/Home g.svg';
 import Class from '../assets/class-light.svg';
 import Profile from '../assets/profile.svg';
-
+import { useNavigation } from '@react-navigation/native'; 
+import type { StackNavigationProp } from '@react-navigation/stack';
+type RootStackParamList = {
+  LectureScreen: undefined;
+};
 const courses = [
   {
     title: 'UI/UX Design',
@@ -41,7 +45,10 @@ const courses = [
   },
 ];
 
+
 const Dashboard = () => {
+      const navigation =
+          useNavigation<StackNavigationProp<RootStackParamList, 'LectureScreen'>>();
   return (
     <View style={{ flex: 1 }}>
       {/* ✅ Hiding the status bar */}
@@ -116,7 +123,9 @@ const Dashboard = () => {
           <Home width={24} height={24} />
         </TouchableOpacity>
         <TouchableOpacity style={styles.navItem}>
-          <Class width={24} height={24} />
+          <Class width={24} height={24} onPress={()=>{
+            navigation.navigate('LectureScreen');
+          }} />
         </TouchableOpacity>
         <TouchableOpacity style={styles.navItem}>
           <Profile width={24} height={24} />
